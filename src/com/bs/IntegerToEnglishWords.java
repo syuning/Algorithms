@@ -2,6 +2,10 @@ package com.bs;
 
 import java.util.HashMap;
 
+// # 273 - 整数转换英文表示
+// 执行用时 : 7 ms, 在所有 Java 提交中击败了 15.65% 的用户
+// 内存消耗 : 36.4 MB, 在所有 Java 提交中击败了 9.68% 的用户
+
 class IntegerToEnglishWords {
 
     public static String getMap(int num) {
@@ -41,8 +45,16 @@ class IntegerToEnglishWords {
     public static String numberToWords(int num) {
         if (num == 0) {
             return "Zero";
-        } else {
+        } else if (num < 1000) {
+            return hundredToWords(num);
+        } else if (num < 1000000) {
+            return thousandToWords(num);
+        } else if (num < 1000000000) {
+            return millionsToWords(num);
+        } else if (num < Math.pow(2, 32)) {
             return billionsToWords(num);
+        } else {
+            return "Integer must be less than th 32th power of 2.";
         }
     }
 
@@ -51,7 +63,7 @@ class IntegerToEnglishWords {
         if (num < 20) {
             return getMap(num);
         } else {
-            if (num % 10 == 0) {
+            if (num % 10 == 0 && num != 0) {
                 return getMap(tens * 10);
             }
             int ones = num - tens * 10;
@@ -60,36 +72,66 @@ class IntegerToEnglishWords {
     }
 
     public static String hundredToWords(int num) {
-        int hundreds = num / 100;
-         if (num % 100 == 0 && num != 0) {
-            return getMap(hundreds) + " Hundred";
-        } else if (num > 100) {
-            return getMap(hundreds) + " Hundred " + tensToWords(num - hundreds * 100);
-        } else {
+        if (num < 100) {
             return tensToWords(num);
         }
+        String hundredInWords = "";
+        int hundreds = num / 100;
+        if (num % 100 == 0 && num != 0) {
+            hundredInWords = getMap(hundreds) + " Hundred";
+        } else if (num > 100) {
+            hundredInWords = getMap(hundreds) + " Hundred " + tensToWords(num - hundreds * 100);
+        }
+
+        return hundredInWords;
+    }
+
+    public static String thousandToWords(int num) {
+        if (num < 1000) {
+            return hundredToWords(num);
+        }
+        String thousandsInWords = "";
+        int thousand = num / 1000;
+        int hundreds = num - thousand * 1000;if (num % 1000 == 0 && num != 0) {
+            thousandsInWords += hundredToWords(thousand) + " Thousand";
+        } else {
+            thousandsInWords += hundredToWords(thousand) + " Thousand " + hundredToWords(hundreds);
+        }
+        return thousandsInWords;
+
+    }
+
+    public static String millionsToWords (int num) {
+        if (num < 1000000) {
+            return thousandToWords(num);
+        }
+        String millionsInWords = "";
+        int millions = num / 1000000;
+        int thousand = num - millions * 1000000;
+        if (num % 1000000 == 0 && num != 0) {
+            millionsInWords += hundredToWords(millions) + " Million";
+        } else {
+            millionsInWords += hundredToWords(millions) + " Million " +  thousandToWords(thousand);
+        }
+
+        return millionsInWords;
     }
 
     public static String billionsToWords (int num) {
-        String thousands = "";
+        String billionsInWords = "";
         int billions = num / 1000000000;
-        int millions = (num - billions * 1000000000) / 1000000;
-        int thousand = (num - billions * 1000000000 - millions * 1000000) / 1000;
-        int ones = (num - billions * 1000000000 - millions * 1000000 - thousand * 1000);
+        int millions = num - billions * 1000000000;
 
-        if (num > 999999999) {
-            thousands += hundredToWords(billions) + " Billion " + hundredToWords(millions) + " Million " + hundredToWords(thousand) + " Thousand " + hundredToWords(ones);
-        } else if (num > 999999) {
-            thousands += hundredToWords(millions) + " Million " + hundredToWords(thousand) + " Thousand " + hundredToWords(ones);
-        } else if (num > 999) {
-            thousands += hundredToWords(thousand) + " Thousand " + hundredToWords(ones);
+        if (num % 1000000000 == 0) {
+            billionsInWords = hundredToWords(billions) + " Billion";
         } else {
-            thousands += hundredToWords(num);
+            billionsInWords = hundredToWords(billions) + " Billion " + millionsToWords(millions);
         }
-        return thousands;
+
+        return billionsInWords;
     }
 
     public static void main(String[] args) {
-        System.out.println(billionsToWords(1000));
+        System.out.println(numberToWords(1000000001));
     }
 }
