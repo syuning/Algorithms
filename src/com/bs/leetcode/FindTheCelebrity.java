@@ -1,4 +1,4 @@
-package com.bs;
+package com.bs.leetcode;
 
 public class FindTheCelebrity {
 

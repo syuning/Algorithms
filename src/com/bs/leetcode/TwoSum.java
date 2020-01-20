@@ -1,4 +1,4 @@
-package com.bs;
+package com.bs.leetcode;
 
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {

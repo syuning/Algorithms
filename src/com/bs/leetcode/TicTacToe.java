@@ -1,4 +1,4 @@
-package com.bs;
+package com.bs.leetcode;
 
 // # 348 - 判定井字棋胜负
 // 执行用时 : 62 ms, 在所有 Java 提交中击败了 12.88% 的用户
