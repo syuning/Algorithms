@@ -1,4 +1,4 @@
-package com.bs.nowcoder;
+package 面试题.bs.nowcoder;
 
 import java.util.Scanner;
 
