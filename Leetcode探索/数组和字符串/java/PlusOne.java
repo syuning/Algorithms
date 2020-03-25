@@ -2,7 +2,7 @@ package Leetcode探索.数组和字符串.java;
 
 public class PlusOne {
     public static int[] plusOne(int[] digits) {
-        long oldNum;;
+        long oldNum = 0;
         for (int i = 0; i < digits.length; i++) {
             System.out.println(digits[i] + " " + Math.pow(10, (digits.length - i - 1)));
             oldNum += (digits[i]) * Math.pow(10, (digits.length - i - 1));
