@@ -1,4 +1,4 @@
-package 面试题.bs.leetcode;
+package 面试题.leetcode;
 
 class ListNode {
     int val;
@@ -26,7 +26,7 @@ public class AddTwoNumbers {
         ListNode l1 = new ListNode(2);
         l1.next.val = 4;
         l1.next.val = 3;
-        ListNode l2 = new ListNode(5);
+        // ListNode l2 = new ListNode(5);
         l1.next.val = 6;
         l1.next.val = 4;
 

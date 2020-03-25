@@ -1,4 +1,4 @@
-package 面试题.bs.leetcode;
+package 面试题.leetcode;
 
 public class FindTheCelebrity {
 

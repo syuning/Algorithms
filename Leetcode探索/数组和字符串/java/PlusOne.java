@@ -1,14 +1,20 @@
 package Leetcode探索.数组和字符串.java;
 
+import java.math.BigInteger;
+
 public class PlusOne {
     public static int[] plusOne(int[] digits) {
-        long oldNum = 0;
+        String oldNumString = "";
         for (int i = 0; i < digits.length; i++) {
-            System.out.println(digits[i] + " " + Math.pow(10, (digits.length - i - 1)));
-            oldNum += (digits[i]) * Math.pow(10, (digits.length - i - 1));
+            oldNumString += digits[i];
         }
-        String newNum = String.valueOf(oldNum + 1);
-        System.out.println(oldNum + " " + newNum);
+        System.out.println(oldNumString); 
+
+        BigInteger oldNum = new BigInteger(oldNumString);
+        BigInteger one = new BigInteger("1");
+
+        String newNum = String.valueOf(oldNum.add(one));
+        System.out.println("oldNum" + oldNum + " newNum" + newNum);
         int[] newDigits = new int[newNum.length()];
 
         for (int i = 0; i < newDigits.length; i++) {
@@ -18,6 +24,7 @@ public class PlusOne {
         return newDigits;
         
     }
+
 
     public static void main(String[] args) {
         // int[] nums1 = {1,2,3};

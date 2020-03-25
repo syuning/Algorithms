@@ -1,4 +1,4 @@
-package 面试题.bs.nowcoder;
+package 面试题.nowcoder;
 
 import java.util.ArrayList;
 
