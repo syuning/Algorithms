@@ -1,4 +1,4 @@
-package Leetcode探索.数组和字符串.java;
+package Leetcode探索.数组和字符串.java.数组;
 
 public class PivotNum {
     public static int pivotIndex(int[] nums) {
