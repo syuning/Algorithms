@@ -1,4 +1,4 @@
-package Leetcode探索.数组和字符串.java.二维数组;
+package Leetcode探索.二维数组.java;
 
 class FindDiagonalOrder {
     public static int[] findDiagonalOrder (int[][] matrix) {
