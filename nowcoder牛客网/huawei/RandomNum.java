@@ -1,4 +1,4 @@
-package 面试题.nowcoder.huawei;
+package nowcoder牛客网.huawei;
 
 import java.util.Scanner;
 
