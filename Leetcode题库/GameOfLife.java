@@ -1,21 +1,44 @@
 package Leetcode题库;
 
 public class GameOfLife {
-    public void gameOfLife(int[][] board) {
+    public static void gameOfLife(int[][] board) {
+        int[][] newBoard = new int[board.length][board[0].length];
+        for (int x = 0; x < board.length; x++) {
+            for (int y = 0; y < board[x].length; y++) {
+                // 输入矩阵和一个坐标，返回该坐标周围的8个邻居坐标
+                int liveCellNum = 0;
+                liveCellNum += (x-1) >= 0 && (y-1) >= 0 ? board[x-1][y-1] : 0;
+                liveCellNum += (x-1) >= 0 ? board[x-1][y] : 0;
+                liveCellNum += (x-1) >= 0 && (y+1) < board[0].length ? board[x-1][y+1] : 0;
+                liveCellNum += (y-1) >= 0 ? board[x][y-1] : 0;
+                liveCellNum += (y+1) < board[0].length ? board[x][y+1] : 0;
+                liveCellNum += (x+1) < board.length && (y-1) >= 0 ? board[x+1][y-1] : 0;
+                liveCellNum += (x+1) < board.length ? board[x+1][y] : 0;
+                liveCellNum += (x+1) < board.length && (y+1) < board[0].length? board[x+1][y+1] : 0;
+                if (board[x][y] == 1) {
+                    if (liveCellNum >= 1 && liveCellNum <= 4) {
+                        newBoard[x][y] = 1;
+                    } else {
+                        newBoard[x][y] = 0;
+                    }
 
-    }
-
-    public int[] getNeighbours(int[][] board, int x, int y) {
-        // 输入矩阵和一个坐标，返回该坐标周围的8个邻居坐标
-        int[] neighbours = new int[8];
-                                           
-        if(board[x][y] == 0) { // 若该细胞当前为死，则当周围有3个活细胞时，下一轮变活，否则保持死亡
-
-        } else if (board[x][y] == 1) { // 若该细胞当前为活，则当周围有2或3个活细胞时，下一轮保持活，否则变死亡
-
+                } else if (board[x][y] == 0 && liveCellNum == 3) {
+                    newBoard[x][y] = 1;
+                }
+                System.out.print(newBoard[x][y] + " ");
+            }
+            System.out.println();
         }
 
-        return neighbours;
-
+    }
+    
+    public static void main(String[] args){
+        int[][] board = {
+            {0, 1, 0},
+            {0, 0, 1},
+            {1, 1, 1},
+            {0, 0, 0}
+        };
+        gameOfLife(board);
     }
 }
