@@ -16,7 +16,7 @@ public class GameOfLife {
                 liveCellNum += (x+1) < board.length ? board[x+1][y] : 0;
                 liveCellNum += (x+1) < board.length && (y+1) < board[0].length? board[x+1][y+1] : 0;
                 if (board[x][y] == 1) {
-                    if (liveCellNum >= 1 && liveCellNum <= 4) {
+                    if (liveCellNum >= 2 && liveCellNum <= 3) {
                         newBoard[x][y] = 1;
                     } else {
                         newBoard[x][y] = 0;
@@ -39,6 +39,8 @@ public class GameOfLife {
             {1, 1, 1},
             {0, 0, 0}
         };
+        System.out.println("*** Game Of Life 生命游戏 ***");
         gameOfLife(board);
+        System.out.println("****************************");
     }
 }
