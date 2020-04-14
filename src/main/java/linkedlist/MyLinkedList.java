@@ -68,17 +68,18 @@ public class MyLinkedList {
      * If index equals to the length of linked list, the node will be appended to the end of linked list.
      * If index is greater than the length, the node will not be inserted. */
     public void addAtIndex(int index, int val) {
-        if (index < this.size) {
+        if (index <= this.size) {
             SinglyListNode nodeToBeAdded = new SinglyListNode();
             nodeToBeAdded.setValue(val);
-
             if (index == 0) {
-                this.head.setPrev(nodeToBeAdded);
-                nodeToBeAdded.setNext(this.head);
                 this.head = nodeToBeAdded;
+                this.tail = nodeToBeAdded;
                 this.size++;
+            } else if (index == this.size) {
+                this.addAtTail(val);
             } else {
                 SinglyListNode next = this.head;
+
                 for (int i = 0; i < index - 1; i++) {
                     next = next.getNext();
                 }
@@ -91,33 +92,70 @@ public class MyLinkedList {
 
                 this.size++;
             }
-        } else if (index == this.size) {
-            this.addAtTail(val);
-
-            this.size++;
         }
     }
 
     /** Delete the index-th node in the linked list, if the index is valid. */
     public void deleteAtIndex(int index) {
         if (index < this.size) {
-            SinglyListNode formerPrev = this.head;
             if (index == 0) {
+                if (this.size == 0) {
+                    this.head = null;
+                    this.tail = null;
+                }
                 this.head = this.head.getNext();
                 this.head.setPrev(null);
+            } else if (index == this.size - 1) {
+                this.tail = this.tail.getPrev();
+                this.tail.setNext(null);
+            } else {
+                SinglyListNode formerPrev = this.head;
+                int i = 0;
+                while (i < index - 1) {
+                    formerPrev = formerPrev.getNext();
+                    i++;
+                }
+                SinglyListNode toBeDeleted = formerPrev.getNext();
+                SinglyListNode formerNext = toBeDeleted.getNext();
+
+                formerPrev.setNext(formerNext);
+                formerNext.setPrev(formerPrev);
+
             }
-            for (int i = 0; i < index - 1; i++) {
-                formerPrev = formerPrev.getNext();
-            }
-
-            SinglyListNode formerNext = formerPrev.getNext();
-
-            formerPrev.setNext(formerNext);
-            formerNext.setPrev(formerPrev);
-
             this.size--;
-
         }
+    }
+
+}
+
+class SinglyListNode {
+    int val;
+    SinglyListNode next;
+    SinglyListNode prev;
+    SinglyListNode() {
+    }
+    public void setValue(int val) {
+        this.val = val;
+    }
+
+    public int getValue() {
+        return this.val;
+    }
+
+    public void setPrev(SinglyListNode prev) {
+        this.prev = prev;
+    }
+
+    public SinglyListNode getPrev() {
+        return this.prev;
+    }
+
+    public void setNext(SinglyListNode next) {
+        this.next = next;
+    }
+
+    public SinglyListNode getNext() {
+        return this.next;
     }
 
 }

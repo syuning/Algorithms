@@ -20,21 +20,21 @@ public class MyLinkedListTest {
     @Test
     public void testAddAtTail() {
         MyLinkedList obj = new MyLinkedList();
-        obj.addAtTail(4);
-        obj.addAtTail(6);
-        obj.addAtTail(1);
-        obj.addAtTail(2);
-        obj.addAtTail(3);
         obj.addAtTail(5);
+        obj.addAtTail(3);
+        obj.addAtTail(2);
+        obj.addAtTail(1);
+        obj.addAtTail(6);
+        obj.addAtTail(4);
 
         printList(obj);
 
-        assertEquals(obj.get(0), 4);
-        assertEquals(obj.get(1), 6);
-        assertEquals(obj.get(2), 1);
-        assertEquals(obj.get(3), 2);
-        assertEquals(obj.get(4), 3);
-        assertEquals(obj.get(5), 5);
+        assertEquals(obj.get(0), 5);
+        assertEquals(obj.get(1), 3);
+        assertEquals(obj.get(2), 2);
+        assertEquals(obj.get(3), 1);
+        assertEquals(obj.get(4), 6);
+        assertEquals(obj.get(5), 4);
     }
 
     @Test
@@ -60,36 +60,36 @@ public class MyLinkedListTest {
     @Test
     public void testAddAtIndex() {
         MyLinkedList obj = new MyLinkedList();
-        obj.addAtIndex(0, 4);
-        obj.addAtIndex(1, 6);
-        obj.addAtIndex(2, 1);
-        obj.addAtIndex(3, 2);
-        obj.addAtIndex(4, 3);
-        obj.addAtIndex(5, 5);
+        obj.addAtIndex(0, 5);
+        obj.addAtIndex(1, 3);
+        obj.addAtIndex(2, 2);
+        obj.addAtIndex(3, 1);
+        obj.addAtIndex(4, 6);
+        obj.addAtIndex(5, 4);
 
         printList(obj);
 
-        assertEquals(obj.get(0), 4);
-        assertEquals(obj.get(1), 6);
-        assertEquals(obj.get(2), 1);
-        assertEquals(obj.get(3), 2);
-        assertEquals(obj.get(4), 3);
-        assertEquals(obj.get(5), 5);
+         assertEquals(obj.get(0), 5);
+         assertEquals(obj.get(1), 3);
+         assertEquals(obj.get(2), 2);
+         assertEquals(obj.get(3), 1);
+         assertEquals(obj.get(4), 6);
+         assertEquals(obj.get(5), 4);
     }
 
     @Test
     public void testDeleteAtIndex() {
         MyLinkedList obj = new MyLinkedList();
-        obj.addAtTail(4);
-        obj.addAtTail(6);
-        obj.addAtTail(1);
-        obj.addAtTail(2);
-        obj.addAtTail(3);
-        obj.addAtTail(5);
+        obj.addAtIndex(0, 5);
+        obj.addAtIndex(1, 3);
+        obj.addAtIndex(2, 2);
+        obj.addAtIndex(3, 1);
+        obj.addAtIndex(4, 6);
+        obj.addAtIndex(5, 4);
 
         printList(obj);
 
-        obj.deleteAtIndex(3);
+        obj.deleteAtIndex(0);
         printList(obj);
     }
 
