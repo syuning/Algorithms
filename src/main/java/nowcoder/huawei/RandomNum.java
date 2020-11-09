@@ -1,4 +1,4 @@
-package main.java.nowcoder牛客网.huawei;
+package main.java.nowcoder.huawei;
 
 import java.util.Scanner;
 
