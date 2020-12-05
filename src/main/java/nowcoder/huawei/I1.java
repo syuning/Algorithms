@@ -7,6 +7,7 @@ import java.io.*;
  */
 public class I1 {
     public static void main(String[] args) throws IOException{
+
         BufferedReader bs = new BufferedReader(new InputStreamReader(System.in));
         String input;
         while((input = bs.readLine()) != null) {
